@@ -58,6 +58,11 @@ class STTVosk():
             print(f"Descomprimiendo {zip_model_name}")
             with ZipFile(zip_model_name, "r") as zf:
                 zf.extractall(self.dir_models)
+            try:
+                print(f"Borrando archivo {zip_model_name}")
+                os.remove(zip_model_name)
+            except Exception as e:
+                print(f"Error al eliminar el archivo {zip_model_name}: {e}")
         return model_path
 
     def save_wav(self, wav_data, file_path):
@@ -67,7 +72,7 @@ class STTVosk():
             wav_file.setframerate(self.FRAMERATE)
             wav_file.writeframes(wav_data)
     
-    def convert_vosk_format(self, raw_data, sample_rate, sample_width):
+    def check_vosk_format(self, raw_data, sample_rate, sample_width):
         if sample_rate == self.FRAMERATE and sample_width == self.BYTE:
             return raw_data
         else:
