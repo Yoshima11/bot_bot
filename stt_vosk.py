@@ -8,6 +8,7 @@ import vosk
 import sounddevice as sd 
 import wave
 
+
 class STTVosk():
     def __init__(self, m_type="big", m_lang="es", device=None):
         self.dir_models = "models"
@@ -94,9 +95,11 @@ class STTVosk():
             else:
                 partial_result = json.loads(self.recognizer.PartialResult())
                 text_parcial = partial_result.get("partial", "")
+                print(text_parcial)
             final_result = json.loads(self.recognizer.FinalResult())
             text += final_result.get("text", "")
             return text.strip()
+
 
 if __name__ == "__main__":
     print(sd.query_devices(kind="input"))
