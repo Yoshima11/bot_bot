@@ -32,6 +32,9 @@ class TTSGO():
         except Exception as e:
             print(f"Error al generar el audio: {e}.")
 
+    def del_audio(self, out_file):
+        os.remove(out_file)
+
     def play_audio(self, audio_file):
         try:
             if os.path.exists(audio_file):
@@ -41,9 +44,6 @@ class TTSGO():
         except Exception as e:
             print(f"Error al reproducir el audio: {e}.")
     
-    def del_audio(self, out_file):
-        os.remove(out_file)
-
     def voice_talk(self, text="Probando audio", out_file="g_out.mp3"):
         self.gen_audio(text, out_file)
         self.play_audio(out_file)

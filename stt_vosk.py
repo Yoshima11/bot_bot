@@ -94,8 +94,8 @@ class STTVosk():
                 text = result.get("text", "")
             else:
                 partial_result = json.loads(self.recognizer.PartialResult())
-                text_parcial = partial_result.get("partial", "")
-                print(text_parcial)
+                #text_parcial = partial_result.get("partial", "")
+                #print(text_parcial)
             final_result = json.loads(self.recognizer.FinalResult())
             text += final_result.get("text", "")
             return text.strip()
